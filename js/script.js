@@ -12,16 +12,16 @@ This function will create and insert/append the elements needed to display a "pa
 
 
 
-function showPage(s, e) {
+function showPage(arrayOfItems) {
     
-    let startRange = s * 9; 
-    let endRange  = e * 9;
+            // console.log(arrayOfItems);
     
     const ul = document.querySelector('.student-list');
     ul.innerText = " ";
     
+
     // Showing the items of data based on the range sent from the pagination function
-    for (var i = startRange; i < endRange; i++) {
+    for (var i = 0; i < arrayOfItems.length; i++) {
         
         // Checking if the Data Array is empty or not to avoid error
         if(i < data.length){
@@ -30,6 +30,7 @@ function showPage(s, e) {
             const studentDetails = document.createElement('div');
             const avatar = document.createElement('img');
             const studentName = document.createElement('h3');
+            
             const studentEmail = document.createElement('span');
 
             const joinedDetails = document.createElement('div');
@@ -38,19 +39,20 @@ function showPage(s, e) {
             li.className = "student-item cf";
             studentDetails.className = "student-details";
             avatar.className = "avatar";
+            studentName.className = "student-name";
             studentEmail.className = "email";
             joinedDetails.className = "joined-details";
             date.className = "date";
 
-            avatar.src = data[i].picture.large;
-            studentName.innerText = data[i].name.first + data[i].name.last;
-            studentEmail.innerText = data[i].email;
-            date.innerText = "Joined " + data[i].registered.date;
+            // Fetching the information from the Data array
+            avatar.src = arrayOfItems[i].picture.large;
+            studentName.innerText = arrayOfItems[i].name.first + " " + arrayOfItems[i].name.last;
+            studentEmail.innerText = arrayOfItems[i].email;
+            date.innerText = "Joined " + arrayOfItems[i].registered.date;
 
             studentDetails.appendChild(avatar);
             studentDetails.appendChild(studentName);
             studentDetails.appendChild(studentEmail);
-
             joinedDetails.appendChild(date);
 
             li.appendChild(studentDetails);
@@ -59,11 +61,8 @@ function showPage(s, e) {
             ul.appendChild(li);
 
         }
-
     }
-
 }
-
 
 /*
 Create the `addPagination` function
@@ -73,7 +72,7 @@ This function will create and insert/append the elements needed for the paginati
 function addPagination() {
 
     // Calculation of how many pages needed to be generated
-    var numberOfPages = Math.ceil(data.length / 9);
+    const numberOfPages = Math.ceil(data.length / 9);
     const ul = document.querySelector('.link-list');
     
     // Creating pagination buttons 
@@ -105,20 +104,18 @@ function addPagination() {
                 btn[0].className = "pagination-btn";
             }
 
-            
             btn[0].className += ' active';
             
             const pageNumber = Number(pageBtn[i].innerText);
-            
-            const startRange = pageNumber - 1;
-            const currenPage = pageNumber;
+            const startRange = (pageNumber - 1) * 9;
+            const endRange = pageNumber * 9;
 
-            showPage(startRange, pageNumber);
+            // Creating an array with the items based on the range (start and pagenumber) 
+            const arrayOfItemsToShow = data.slice(startRange, endRange);
 
+            showPage(arrayOfItemsToShow);
         });
-        
     }
-    
 }
 
 
@@ -133,28 +130,45 @@ function searchPage() {
     const input = document.querySelector('#search');
 
     input.addEventListener('keyup', function () {
+        
 
+        // console.dir(input.value);
 
-        var search = this.value.toLowerCase();
+        var search = input.value.toLowerCase();
 
-        var all = document.querySelectorAll(".student-item cf");
+        // Array of filtered items that included value of input(search) from the Data array
+        const filteredItems = data.filter(function(d){
+            console.log(search);
+            let name = d.name.first + " " + d.name.last;
 
-        for (let i of all) {
-            let item = i.innerHTML.toLowerCase();
-            console.log(item);
+            // Sending the items that startswith the value of the input only
+            const result = name.toLowerCase().startsWith(search);
+            
+            return result;
+        });
 
-            if (item.indexOf(search) == -1) {
-                i.classList.add("hide");
-            } else {
-                i.classList.remove("hide");
-            }
+        //Showing Error Message if search doesn't match
+        const p = document.querySelector('.success-msg');
+        
+        if(filteredItems.length == 0){
+            p.style.display = "block";
+        }else{
+            p.style.display = "none";
         }
+
+        if(search != ""){
+            showPage(filteredItems);
+        }else{
+            const firstPageItems = data.slice(0,9);
+            showPage(firstPageItems);
+        } 
 
     });
 }
 
 
 // Call functions
-showPage(0,1);
+const firstPageItems = data.slice(0,9);
+showPage(firstPageItems);
 addPagination();
-// searchPage();
+searchPage();

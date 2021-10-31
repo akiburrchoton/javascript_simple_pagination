@@ -38,7 +38,15 @@ header h2 {
 	letter-spacing: 2px;
 	margin-bottom: 25px;
 }
-
+.success-msg{
+	display: none;
+	text-align: center;
+	background-color: #de3e3e;
+	padding: 20px;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+}
 .student-search {
 	display: flex;
 }
