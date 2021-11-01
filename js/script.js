@@ -12,14 +12,10 @@ This function will create and insert/append the elements needed to display a "pa
 
 
 
-function showPage(arrayOfItems) {
-    
-            // console.log(arrayOfItems);
-    
+function showPage(arrayOfItems) {    
     const ul = document.querySelector('.student-list');
     ul.innerText = " ";
     
-
     // Showing the items of data based on the range sent from the pagination function
     for (var i = 0; i < arrayOfItems.length; i++) {
         
@@ -131,9 +127,6 @@ function searchPage() {
 
     input.addEventListener('keyup', function () {
         
-
-        // console.dir(input.value);
-
         var search = input.value.toLowerCase();
 
         // Array of filtered items that included value of input(search) from the Data array
