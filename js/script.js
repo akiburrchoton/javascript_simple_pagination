@@ -10,7 +10,7 @@ Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
 
-
+// new WOW().init();
 
 function showPage(arrayOfItems) {    
     const ul = document.querySelector('.student-list');
@@ -33,6 +33,7 @@ function showPage(arrayOfItems) {
             const date = document.createElement('span');
 
             li.className = "student-item cf";
+            li.className += " animate__animated animate__fadeInUp animate__delay-1s";
             studentDetails.className = "student-details";
             avatar.className = "avatar";
             studentName.className = "student-name";
@@ -131,7 +132,6 @@ function searchPage() {
 
         // Array of filtered items that included value of input(search) from the Data array
         const filteredItems = data.filter(function(d){
-            console.log(search);
             let name = d.name.first + " " + d.name.last;
 
             // Sending the items that startswith the value of the input only
@@ -165,3 +165,4 @@ const firstPageItems = data.slice(0,9);
 showPage(firstPageItems);
 addPagination();
 searchPage();
+

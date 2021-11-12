@@ -3,10 +3,12 @@
 * {
 	box-sizing: border-box;
 }
-
+:root {
+	--animate-delay: 0.5s;
+  }
 body {
 	font-family: 'Montserrat', Helvetica, sans-serif;
-	background-color: rgb(229, 238, 250);
+	background-color: #12584c;
 	transition: 0.4s;
 }
 
@@ -34,7 +36,7 @@ header h2 {
 	font-size: 36px;
 	text-transform: uppercase;
 	font-weight: 800;
-	color: #4a5568;
+	color: #88bab2;
 	letter-spacing: 2px;
 	margin-bottom: 25px;
 }
@@ -54,7 +56,7 @@ header h2 {
 .student-search input {
 	width: 100%;
 	border-radius: 4px 0 0 4px;
-	border: 1px solid rgb(30, 144, 255);
+	border: 1px solid #26b89f;
 	padding: 10px 16px;
 	font-size: 14px;
 }
@@ -67,11 +69,11 @@ header h2 {
 	cursor: pointer;
 	width: 55px;
 	border-radius: 0 4px 4px 0;
-	border: 1px solid #1e90ff;
+	border: 1px solid #26b89f;
 	border-left: none;
 	padding: 0px 5px;
 	font-size: 14px;
-	background-color: #1e90ff;
+	background-color: #26b89f;
 	color: #fff;
 }
 
@@ -91,8 +93,8 @@ header h2 {
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 2.5em;
-	background-color: #fff;
-	border-radius: 2px;
+	background-color: #14453D;
+	border-radius: 0px;
 	-webkit-transition: box-shadow 0.3s ease;
 	transition: box-shadow 0.3s ease;
 }
@@ -120,12 +122,12 @@ header h2 {
 	font-weight: 600;
 	font-size: 1.2rem;
 	margin-bottom: 0.45em;
-	color: #1e90ff;
+	color: #37dabf;
 }
 
 .student-item .email {
 	font-weight: 600;
-	color: #6d778a;
+	color:#518c82;
 	font-size: 14px;
 	letter-spacing: 0.5px;
 }
@@ -133,11 +135,11 @@ header h2 {
 .date {
 	display: block;
 	font-size: 14px;
-	color: #6a7679;
+	color: #408075;
 	font-weight: 400;
 	width: 100%;
 	padding-top: 1.1em;
-	border-top: solid 1px #dcdcdc;
+	border-top: solid 1px #74e9d5;
 	margin-top: 1.1em;
 }
 
@@ -160,14 +162,14 @@ header h2 {
 	border: none;
 	border-radius: 3px;
 	text-decoration: none;
-	color: #1e90ff;
+	color: #133933;
 	box-shadow: 0 1px 8px 0 rgba(22, 42, 90, 0.05);
 	transition: 0.4s;
 }
 
 .pagination li button.active,
 .pagination li button:hover {
-	background-color: #1e90ff;
+	background-color: #133933;
 	color: #fff;
 }
 
@@ -209,6 +211,7 @@ header h2 {
 
 	.student-item {
 		border-radius: 5px;
-		box-shadow: 0 4px 16px 0 rgba(22, 42, 90, 0.09);
+		box-shadow: 0px 5px 25px 0px rgb(11 47 41 / 35%);
+	
 	}
 }
